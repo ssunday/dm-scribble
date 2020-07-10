@@ -1,8 +1,7 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "jets"
-
-gem "dynomite"
+gem 'jets'
+gem 'dynamoid'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
