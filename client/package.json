@@ -2,7 +2,9 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --hot",
-    "build": "rm -rf dist && webpack"
+    "build": "rm -rf dist && webpack",
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src"
   },
   "dependencies": {
     "@types/react": "^16.9.42",
