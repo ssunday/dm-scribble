@@ -12,8 +12,13 @@ Built using Ruby on Jets
 - `docker-compose up`
 - `bundle install`
 - `cp .example.env .env`
+- `bundle exec rake dynamoid:create_tables`
 - `bundle exec jets server`
 
 ## Testing
+
+Make sure to run `JETS_ENV=test bundle exec rake dynamoid:create_tables`
+
+Before:
 
 `bundle exec rspec`
