@@ -12,4 +12,11 @@ Jets.boot
 require 'jets/spec_helpers'
 
 require 'capybara/rspec'
+require 'support/dynamoid'
 Capybara.app = Jets.application
+
+RSpec.configure do |config|
+  config.before(:each) do
+    DynamoidReset.all
+  end
+end

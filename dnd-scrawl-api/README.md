@@ -5,9 +5,15 @@ Built using Ruby on Jets
 ## Requirements
 
 - Ruby 2.6.5
-- [Dynamodb locally](https://github.com/tongueroo/jets/wiki/Dynamodb-Local-Setup-Walkthrough)
+- Docker for Dynamodb Locally
 
 ## Setup
 
+- `docker-compose up`
 - `bundle install`
+- `cp .example.env .env`
 - `bundle exec jets server`
+
+## Testing
+
+`bundle exec rspec`
