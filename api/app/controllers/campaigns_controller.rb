@@ -1,9 +1,9 @@
 class CampaignsController < ApplicationController
   def index
     render json: {
-             action: 'index',
-             campaigns: Campaign.all
-           }
+      action: 'index',
+      campaigns: Campaign.all
+    }
   end
 
   def show

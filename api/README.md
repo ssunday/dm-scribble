@@ -22,3 +22,7 @@ Make sure to run `JETS_ENV=test bundle exec rake dynamoid:create_tables`
 Before:
 
 `bundle exec rspec`
+
+## Linting
+
+`bundle exec rubocop -a -c .rubocop.yml`

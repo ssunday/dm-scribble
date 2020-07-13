@@ -1,3 +1,3 @@
 Jets.application.routes.draw do
-  resources :campaigns, only: [:index, :show]
+  resources :campaigns, only: %i[index show]
 end
