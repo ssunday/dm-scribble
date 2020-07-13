@@ -6,6 +6,7 @@ Built using Ruby on Jets
 
 - Ruby 2.6.5
 - Docker for Dynamodb Locally
+- AWS Credential file removed (issue with local Dynamodb)
 
 ## Setup
 
@@ -13,6 +14,7 @@ Built using Ruby on Jets
 - `bundle install`
 - `cp .example.env .env`
 - `bundle exec rake dynamoid:create_tables`
+- `bundle exec jets seed:dev`
 - `bundle exec jets server`
 
 ## Testing
