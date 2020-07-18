@@ -3,8 +3,10 @@
   "scripts": {
     "start": "webpack-dev-server --hot",
     "build": "rm -rf dist && webpack",
-    "lint": "eslint src",
-    "lint:fix": "eslint --fix src"
+    "lint": "eslint src spec",
+    "lint:fix": "eslint --fix src spec",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@types/react": "^16.9.42",

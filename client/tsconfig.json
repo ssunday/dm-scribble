@@ -10,7 +10,8 @@
     "strict": true
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "spec/**/*"
   ],
   "exclude": [
     "node_modules"
