@@ -7,7 +7,13 @@ module.exports = {
     contentBase: path.join(__dirname, 'src'),
     compress: true,
     historyApiFallback: true,
-    port: 8080
+    port: 8080,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8888',
+        pathRewrite: {'^/api' : ''}
+      }
+    }
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
