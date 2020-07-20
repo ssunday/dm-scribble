@@ -7,8 +7,8 @@ export const CampaignCard = ({
   campaign: Campaign;
 }): JSX.Element => {
   return (
-    <div>
-      <h3>{campaign.name}</h3>
+    <div className="card">
+      <h3 className="card__title">{campaign.name}</h3>
     </div>
   );
 };

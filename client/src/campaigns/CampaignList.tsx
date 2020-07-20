@@ -18,9 +18,11 @@ export const CampaignList = (): JSX.Element => {
   return (
     <div>
       <h2>Your Campaigns</h2>
-      {campaigns.map((campaign) => (
-        <CampaignCard campaign={campaign} key={campaign.id} />
-      ))}
+      <div className="card__grid">
+        {campaigns.map((campaign) => (
+          <CampaignCard campaign={campaign} key={campaign.id} />
+        ))}
+      </div>
     </div>
   );
 };

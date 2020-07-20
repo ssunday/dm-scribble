@@ -1,6 +1,8 @@
 import React from 'react';
 import { CampaignList } from './campaigns/CampaignList';
 
+import './assets/stylesheets/main.scss';
+
 export const Main = (): JSX.Element => {
   return (
     <div>

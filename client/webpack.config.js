@@ -7,6 +7,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'src'),
     compress: true,
     historyApiFallback: true,
+    hot: true,
     port: 8080,
     proxy: {
       '/api': {
@@ -21,7 +22,19 @@ module.exports = {
   mode: 'production',
   module: {
     rules: [
-      { test: /\.tsx?$/, loader: 'ts-loader' }
+      { test: /\.tsx?$/, loader: 'ts-loader' },
+      {
+        test: /\.s[ac]ss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      }
     ]
   },
   output: {

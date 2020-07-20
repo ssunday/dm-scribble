@@ -1,0 +1,15 @@
+.card__grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .card {
+    flex: 2;
+  }
+}
+
+.card {
+  border: 4px solid $color-red;
+  padding: 1em;
+  margin: 0.5em;
+}
