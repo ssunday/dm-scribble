@@ -14,3 +14,25 @@ export async function getCampaigns(): Promise<Campaign[]> {
     return [];
   }
 }
+
+export async function getCampaign(id: string): Promise<Campaign | undefined> {
+  try {
+    const response: Result = await axios.get(`/api/campaigns/${id}`);
+    return response.data.campaign as Campaign | undefined;
+  } catch (error) {
+    return undefined;
+  }
+}
+
+export async function createCampaign(
+  data: Partial<Campaign>
+): Promise<boolean> {
+  try {
+    const response: Result = await axios.post('/api/campaigns', {
+      campaign: data,
+    });
+    return response.data.status === 201;
+  } catch (error) {
+    return false;
+  }
+}

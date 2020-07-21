@@ -1,16 +1,46 @@
 import axios from 'axios';
-import { getCampaigns } from '../../src/campaigns/CampaignService';
+import * as CampaignService from '../../src/campaigns/CampaignService';
 
 jest.mock('axios');
 
 describe('CampaignService', (): void => {
-  it('calls to api/campaigns route', async (): Promise<void> => {
-    (axios.get as any).mockImplementation(() => {
-      return { data: { campaigns: [] } };
+  describe('getCampaigns', (): void => {
+    it('calls to api/campaigns route', async (): Promise<void> => {
+      (axios.get as any).mockImplementation(() => {
+        return { data: { campaigns: [] } };
+      });
+
+      await CampaignService.getCampaigns();
+
+      expect(axios.get).toHaveBeenCalledWith('/api/campaigns');
     });
+  });
 
-    await getCampaigns();
+  describe('getCampaign', (): void => {
+    it('calls to api/campaign route', async (): Promise<void> => {
+      (axios.get as any).mockImplementation(() => {
+        return { data: { campaign: undefined } };
+      });
 
-    expect(axios.get).toHaveBeenCalledWith('/api/campaigns');
+      await CampaignService.getCampaign('4');
+
+      expect(axios.get).toHaveBeenCalledWith('/api/campaigns/4');
+    });
+  });
+
+  describe('createCampaign', (): void => {
+    const data = { name: '4' };
+
+    it('calls to api/campaign route', async (): Promise<void> => {
+      (axios.post as any).mockImplementation(() => {
+        return { status: 201 };
+      });
+
+      await CampaignService.createCampaign(data);
+
+      expect(axios.post).toHaveBeenCalledWith('/api/campaigns', {
+        campaign: data,
+      });
+    });
   });
 });

@@ -1,14 +1,21 @@
 import React from 'react';
-import { CampaignList } from './campaigns/CampaignList';
+import { Route, Router, Switch } from 'react-router';
+import { createBrowserHistory } from 'history';
+import { CampaignRoutes } from './campaigns/CampaignRoutes';
+import { Home } from './app/Home';
+import { Layout } from './app/Layout';
 
 import './assets/stylesheets/main.scss';
 
 export const Main = (): JSX.Element => {
   return (
-    <div>
-      <h1>D&D Scrawl</h1>
-      <p>Notes and stuff</p>
-      <CampaignList />
-    </div>
+    <Router history={createBrowserHistory()}>
+      <Switch>
+        <Layout>
+          <Route exact path="/" component={Home} />
+          <Route path="/campaigns" component={CampaignRoutes} />
+        </Layout>
+      </Switch>
+    </Router>
   );
 };

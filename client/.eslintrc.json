@@ -16,7 +16,8 @@
   },
   "parser": "@typescript-eslint/parser",
   "rules": {
-    "@typescript-eslint/no-floating-promises": "off"
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off"
   },
   "overrides": [{
     "files": "*.spec.*",
