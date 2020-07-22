@@ -1,0 +1,19 @@
+nav {
+  background-color: darken($color-red, 20%);
+  color: $color-white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1em;
+
+  a {
+    color: $color-white;
+    font-size: $font-size-medium;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

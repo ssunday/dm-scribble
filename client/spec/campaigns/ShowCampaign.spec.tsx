@@ -21,4 +21,16 @@ describe('ShowCampaign', (): void => {
     expect(screen.getByText(campaign.name)).toBeDefined();
     expect(getCampaign).toHaveBeenCalledWith('5');
   });
+
+  it('renders loading spinner if undefined', async (): Promise<void> => {
+    (getCampaign as any).mockImplementation(() => {
+      return undefined;
+    });
+
+    await act(async () => {
+      render(wrapWithRouterAndId(<ShowCampaign />, '5'));
+    });
+
+    expect(screen.queryByText(campaign.name)).toBeNull();
+  });
 });

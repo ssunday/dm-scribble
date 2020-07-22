@@ -16,9 +16,9 @@ export const NewCampaign = (): JSX.Element => {
   const saveCampaign = async (): Promise<void> => {
     const result = await createCampaign(campaign);
     if (result) {
-      setError(result);
-    } else {
       history.push(index());
+    } else {
+      setError(result);
     }
   };
 

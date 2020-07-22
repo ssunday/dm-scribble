@@ -1,8 +1,10 @@
-@import 'settings/variables';
-@import 'components/card';
+@import 'vendor/loading-spinner';
 
-body {
-  font-family: sans-serif;
-  margin: 1em;
-  padding: 0;
-}
+@import 'base/variables';
+@import 'base/typography';
+@import 'base/core';
+
+@import 'layout/container';
+@import 'layout/nav';
+
+@import 'components/card';

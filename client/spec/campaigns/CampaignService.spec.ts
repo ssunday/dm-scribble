@@ -12,7 +12,7 @@ describe('CampaignService', (): void => {
 
       await CampaignService.getCampaigns();
 
-      expect(axios.get).toHaveBeenCalledWith('/api/campaigns');
+      expect(axios.get).toHaveBeenCalledWith('/api/campaigns', undefined);
     });
   });
 
@@ -24,7 +24,7 @@ describe('CampaignService', (): void => {
 
       await CampaignService.getCampaign('4');
 
-      expect(axios.get).toHaveBeenCalledWith('/api/campaigns/4');
+      expect(axios.get).toHaveBeenCalledWith('/api/campaigns/4', undefined);
     });
   });
 
@@ -39,6 +39,22 @@ describe('CampaignService', (): void => {
       await CampaignService.createCampaign(data);
 
       expect(axios.post).toHaveBeenCalledWith('/api/campaigns', {
+        campaign: data,
+      });
+    });
+  });
+
+  describe('updateCampaign', (): void => {
+    const data = { name: '4' };
+
+    it('calls to api/campaign route with put', async (): Promise<void> => {
+      (axios.put as any).mockImplementation(() => {
+        return { status: 204 };
+      });
+
+      await CampaignService.updateCampaign('5', data);
+
+      expect(axios.put).toHaveBeenCalledWith('/api/campaigns/5', {
         campaign: data,
       });
     });

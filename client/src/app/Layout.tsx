@@ -5,11 +5,12 @@ export const Layout = (props: {
   children: JSX.Element | JSX.Element[];
 }): JSX.Element => {
   return (
-    <div>
+    <>
       <nav>
         <NavLink to="/">Home</NavLink>
+        <NavLink to="/campaigns">Your Campaigns</NavLink>
       </nav>
-      {props.children}
-    </div>
+      <div className="container">{props.children}</div>
+    </>
   );
 };

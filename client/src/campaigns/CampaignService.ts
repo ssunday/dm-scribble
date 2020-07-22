@@ -1,13 +1,9 @@
-import axios from 'axios';
 import { Campaign } from './Campaign';
-
-type Result = {
-  data: Record<string, unknown>;
-};
+import * as Http from '../http/Http';
 
 export async function getCampaigns(): Promise<Campaign[]> {
   try {
-    const response: Result = await axios.get('/api/campaigns');
+    const response = await Http.get('/api/campaigns');
     return response.data.campaigns as Campaign[];
   } catch (error) {
     console.log(error);
@@ -17,7 +13,7 @@ export async function getCampaigns(): Promise<Campaign[]> {
 
 export async function getCampaign(id: string): Promise<Campaign | undefined> {
   try {
-    const response: Result = await axios.get(`/api/campaigns/${id}`);
+    const response = await Http.get(`/api/campaigns/${id}`);
     return response.data.campaign as Campaign | undefined;
   } catch (error) {
     return undefined;
@@ -28,10 +24,24 @@ export async function createCampaign(
   data: Partial<Campaign>
 ): Promise<boolean> {
   try {
-    const response: Result = await axios.post('/api/campaigns', {
+    const response = await Http.post('/api/campaigns', {
       campaign: data,
     });
-    return response.data.status === 201;
+    return response.status === Http.HttpCode.Created;
+  } catch (error) {
+    return false;
+  }
+}
+
+export async function updateCampaign(
+  id: string,
+  data: Partial<Campaign>
+): Promise<boolean> {
+  try {
+    const response = await Http.put(`/api/campaigns/${id}`, {
+      campaign: data,
+    });
+    return response.status === Http.HttpCode.NoContent;
   } catch (error) {
     return false;
   }

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Campaign } from './Campaign';
-import { getCampaign } from './CampaignService';
+import { getCampaign, updateCampaign } from './CampaignService';
+import { CampaignForm } from './shared/CampaignForm';
 import { LoadingSpinner } from '../components/LoadingSpinner';
-import { editCampaign } from './CampaignPaths';
 
-export const ShowCampaign = (): JSX.Element => {
+export const EditCampaign = (): JSX.Element => {
   const { id } = useParams();
 
   const [campaign, setCampaign] = React.useState<Campaign | undefined>(
@@ -17,6 +17,12 @@ export const ShowCampaign = (): JSX.Element => {
     setCampaign(result);
   };
 
+  const saveCampaign = async (): Promise<void> => {
+    if (id && campaign) {
+      await updateCampaign(id, campaign);
+    }
+  };
+
   React.useEffect(() => {
     fetchCampaign();
   }, [id]);
@@ -24,8 +30,11 @@ export const ShowCampaign = (): JSX.Element => {
   if (campaign) {
     return (
       <div>
-        <h1>{campaign.name}</h1>
-        <Link to={editCampaign(campaign.id)}>Edit</Link>
+        <CampaignForm
+          campaign={campaign}
+          onChange={(c) => setCampaign(c as Campaign)}
+          onSave={saveCampaign}
+        />
       </div>
     );
   }

@@ -19,7 +19,7 @@ export const IndexCampaign = (): JSX.Element => {
 
   return (
     <div>
-      <h2>Your Campaigns</h2>
+      <h1>Your Campaigns</h1>
       <Link to={newCampaign()}>New Campaign</Link>
       <div className="card__grid">
         {campaigns.map((campaign) => (
