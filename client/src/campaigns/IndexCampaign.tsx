@@ -4,18 +4,25 @@ import { CampaignCard } from './index/CampaignCard';
 import { Campaign } from './Campaign';
 import { getCampaigns } from './CampaignService';
 import { newCampaign } from './CampaignPaths';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 
 export const IndexCampaign = (): JSX.Element => {
   const [campaigns, setCampaigns] = React.useState<Campaign[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(true);
 
   const fetchCampaigns = async (): Promise<void> => {
     const result = await getCampaigns();
     setCampaigns(result);
+    setLoading(false);
   };
 
   React.useEffect((): void => {
     fetchCampaigns();
   }, []);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div>
