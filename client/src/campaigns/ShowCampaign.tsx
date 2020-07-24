@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Campaign } from './Campaign';
 import { getCampaign } from './CampaignService';
 import { LoadingSpinner } from '../components/LoadingSpinner';
+import { IndexPlayerCharacter } from '../playerCharacters/IndexPlayerCharacter';
 import { editCampaign } from './CampaignPaths';
 
 export const ShowCampaign = (): JSX.Element => {
@@ -26,6 +27,8 @@ export const ShowCampaign = (): JSX.Element => {
       <div>
         <h1>{campaign.name}</h1>
         <Link to={editCampaign(campaign.id)}>Edit</Link>
+
+        <IndexPlayerCharacter campaignId={campaign.id} />
       </div>
     );
   }

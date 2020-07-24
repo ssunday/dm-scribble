@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Campaign } from './Campaign';
 import { createCampaign } from './CampaignService';
-import { index } from './CampaignPaths';
+import { indexCampaign } from './CampaignPaths';
 import { CampaignForm } from './shared/CampaignForm';
 
 export const NewCampaign = (): JSX.Element => {
@@ -16,7 +16,7 @@ export const NewCampaign = (): JSX.Element => {
   const saveCampaign = async (): Promise<void> => {
     const result = await createCampaign(campaign);
     if (result) {
-      history.push(index());
+      history.push(indexCampaign());
     } else {
       setError(result);
     }

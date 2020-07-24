@@ -1,6 +1,6 @@
 import React from 'react';
 import { Campaign } from '../Campaign';
-import { show as showCampaign } from '../CampaignPaths';
+import { showCampaign } from '../CampaignPaths';
 import { Link } from 'react-router-dom';
 
 export const CampaignCard = ({

@@ -1,0 +1,16 @@
+.field {
+  display: block;
+
+  label {
+    display: block;
+    font-weight: $font-weight-bold;
+    margin: 0.5em 0;
+  }
+}
+
+
+input {
+  border: 1px solid $color-black;
+  border-radius: 2px;
+  padding: 0.5em;
+}

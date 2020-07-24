@@ -12,6 +12,22 @@ export function wrapWithRouterAndId(
   );
 }
 
+export function wrapWithRouterAndNestedId(
+  component: JSX.Element,
+  parent: string,
+  parentId: string,
+  id: string
+): JSX.Element {
+  return (
+    <MemoryRouter
+      initialIndex={0}
+      initialEntries={[`/test-path/${parentId}/${id}`]}
+    >
+      <Route path={`/test-path/:${parent}/:id`}>{component}</Route>
+    </MemoryRouter>
+  );
+}
+
 export function wrapWithBasicRouter(component: JSX.Element): JSX.Element {
   return <MemoryRouter>{component}</MemoryRouter>;
 }
