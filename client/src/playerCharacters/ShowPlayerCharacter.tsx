@@ -4,6 +4,7 @@ import { PlayerCharacter } from './PlayerCharacter';
 import { getPlayerCharacter } from './PlayerCharacterService';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { editPlayerCharacter } from './PlayerCharacterPaths';
+import { showCampaign } from '../campaigns/CampaignPaths';
 
 export const ShowPlayerCharacter = (): JSX.Element => {
   const { campaignId, id } = useParams();
@@ -29,6 +30,7 @@ export const ShowPlayerCharacter = (): JSX.Element => {
         <Link to={editPlayerCharacter(campaignId, playerCharacter.id)}>
           Edit
         </Link>
+        <Link to={showCampaign(campaignId)}>Back to Campaign</Link>
       </div>
     );
   }

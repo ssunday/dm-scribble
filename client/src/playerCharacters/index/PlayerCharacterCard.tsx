@@ -13,6 +13,7 @@ export const PlayerCharacterCard = ({
   return (
     <div className="card">
       <h3 className="card__title">{playerCharacter.name}</h3>
+      <h4 className="card__subtitle">Race: {playerCharacter.race || 'N/A'}</h4>
       <Link to={showPlayerCharacter(campaignId, playerCharacter.id)}>View</Link>
     </div>
   );
