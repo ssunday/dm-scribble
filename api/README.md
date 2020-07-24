@@ -13,8 +13,7 @@ Built using Ruby on Jets
 - `bundle install`
 - `cp .example.env .env`
 - `cp .example.env.test .env.test`
-- `bundle exec rake dynamoid:create_tables`
-- `bundle exec jets seed:dev`
+- `bundle exec rake dynamoid:create_tables && bundle exec jets seed:dev`
 - `bundle exec jets server`
 
 ## Testing

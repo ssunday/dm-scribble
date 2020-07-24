@@ -11,7 +11,7 @@ describe CampaignsController, type: :controller do
     it 'show returns a success response' do
       campaign = Campaign.create(name: 'foobar')
 
-      get '/campaigns/:id', id: campaign.id
+      get '/campaigns/:id', campaign_id: campaign.id
 
       data = JSON.parse(response.body)
 
@@ -22,16 +22,19 @@ describe CampaignsController, type: :controller do
   end
 
   describe 'PUT #update' do
+    let(:campaign) { Campaign.create(name: 'foobar 123') }
+
     it 'updates a campaign' do
-      campaign = Campaign.create(name: 'foobar')
+      put '/campaigns/:id', campaign_id: campaign.id, params: { campaign: { name: 'Test 123' } }
 
-      put '/campaigns/:id', id: campaign.id, params: { campaign: { name: 'Test' } }
+      expect(response.status).to eq(204)
+      expect(campaign.reload.name).to eq('Test 123')
+    end
 
-      data = JSON.parse(response.body)
+    it 'handles bad data' do
+      put '/campaigns/:id', campaign_id: campaign.id, params: { campaign: { name: '' } }
 
-      expect(response.status).to eq(200)
-      expect(data['action']).to eq('update')
-      expect(campaign.reload.name).to eq('Test')
+      expect(response.status).to eq(422)
     end
   end
 
@@ -44,6 +47,12 @@ describe CampaignsController, type: :controller do
       expect(response.status).to eq(201)
       expect(data['action']).to eq('create')
       expect(data['campaign']).to include('name' => 'Test')
+    end
+
+    it 'handles bad data' do
+      post '/campaigns', params: { campaign: { name: '' } }
+
+      expect(response.status).to eq(422)
     end
   end
 end

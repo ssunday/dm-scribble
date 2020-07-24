@@ -11,21 +11,21 @@ class CampaignsController < ApplicationController
   end
 
   def create
-    campaign = Campaign.create(campaign_params)
+    campaign = Campaign.create!(campaign_params)
 
     render status: :created, json: { action: 'create', campaign: campaign }
   end
 
   def update
-    find_campaign.update_attributes(campaign_params)
+    Campaign.update!(params[:campaign_id], campaign_params)
 
-    render json: { action: 'update' }
+    render status: :no_content
   end
 
   private
 
   def find_campaign
-    Campaign.find(params[:id])
+    Campaign.find(params[:campaign_id])
   end
 
   def campaign_params
