@@ -1,6 +1,7 @@
 import React from 'react';
 import { PlayerCharacter } from '../PlayerCharacter';
 import { TextInput } from '../../form/TextInput';
+import { Form } from '../../form/Form';
 
 export const PlayerCharacterForm = ({
   playerCharacter,
@@ -17,13 +18,8 @@ export const PlayerCharacterForm = ({
     onChange({ ...playerCharacter, [name]: value });
   };
 
-  const onSubmit = (event: React.FormEvent): void => {
-    event.preventDefault();
-    onSave();
-  };
-
   return (
-    <form onSubmit={onSubmit}>
+    <Form onSubmit={onSave}>
       <TextInput
         label="Name"
         prefix="playerCharacter"
@@ -38,7 +34,6 @@ export const PlayerCharacterForm = ({
         value={playerCharacter.race || ''}
         onChange={handleChange}
       />
-      <input type="submit" value="Save" className="button" />
-    </form>
+    </Form>
   );
 };

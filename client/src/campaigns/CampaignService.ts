@@ -2,22 +2,13 @@ import { Campaign } from './Campaign';
 import * as Http from '../http/Http';
 
 export async function getCampaigns(): Promise<Campaign[]> {
-  try {
-    const response = await Http.get('/api/campaigns');
-    return response.data.campaigns as Campaign[];
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
+  const response = await Http.get('/api/campaigns');
+  return response.data.campaigns as Campaign[];
 }
 
 export async function getCampaign(id: string): Promise<Campaign | undefined> {
-  try {
-    const response = await Http.get(`/api/campaigns/${id}`);
-    return response.data.campaign as Campaign | undefined;
-  } catch (error) {
-    return undefined;
-  }
+  const response = await Http.get(`/api/campaigns/${id}`);
+  return response.data.campaign as Campaign | undefined;
 }
 
 export async function createCampaign(

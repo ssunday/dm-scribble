@@ -30,6 +30,7 @@ export const EditCampaign = (): JSX.Element => {
   if (campaign) {
     return (
       <div>
+        <h1>Editing Campaign</h1>
         <CampaignForm
           campaign={campaign}
           onChange={(c) => setCampaign(c as Campaign)}

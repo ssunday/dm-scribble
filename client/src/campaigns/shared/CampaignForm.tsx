@@ -1,6 +1,7 @@
 import React from 'react';
 import { Campaign } from '../Campaign';
 import { TextInput } from '../../form/TextInput';
+import { Form } from '../../form/Form';
 
 export const CampaignForm = ({
   campaign,
@@ -15,13 +16,8 @@ export const CampaignForm = ({
     onChange({ ...campaign, [name]: value });
   };
 
-  const onSubmit = (event: React.FormEvent): void => {
-    event.preventDefault();
-    onSave();
-  };
-
   return (
-    <form onSubmit={onSubmit}>
+    <Form onSubmit={onSave}>
       <TextInput
         label="Name"
         prefix="campaign"
@@ -29,7 +25,6 @@ export const CampaignForm = ({
         value={campaign.name || ''}
         onChange={handleChange}
       />
-      <input type="submit" value="Save" />
-    </form>
+    </Form>
   );
 };
