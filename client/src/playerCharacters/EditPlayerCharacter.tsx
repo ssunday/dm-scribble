@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { PlayerCharacter } from './PlayerCharacter';
 import {
   getPlayerCharacter,
@@ -7,7 +7,9 @@ import {
 } from './PlayerCharacterService';
 import { PlayerCharacterForm } from './shared/PlayerCharacterForm';
 import { LoadingSpinner } from '../components/LoadingSpinner';
+import * as Page from '../components/Page';
 import { showPlayerCharacter } from './PlayerCharacterPaths';
+import { ErrorNotice } from '../form/ErrorNotice';
 
 export const EditPlayerCharacter = (): JSX.Element => {
   const { campaignId, id } = useParams();
@@ -16,6 +18,7 @@ export const EditPlayerCharacter = (): JSX.Element => {
   const [playerCharacter, setPlayerCharacter] = React.useState<
     PlayerCharacter | undefined
   >(undefined);
+  const [error, setError] = React.useState<string | undefined>(undefined);
 
   const fetchPlayerCharacter = async (): Promise<void> => {
     const result = await getPlayerCharacter(campaignId, id);
@@ -24,8 +27,12 @@ export const EditPlayerCharacter = (): JSX.Element => {
 
   const savePlayerCharacter = async (): Promise<void> => {
     if (id && playerCharacter) {
-      await updatePlayerCharacter(campaignId, id, playerCharacter);
-      history.push(showPlayerCharacter(campaignId, id));
+      const result = await updatePlayerCharacter(campaignId, id, playerCharacter);
+      if (result) {
+        setError(result.error || 'Something went wrong');
+      } else {
+        history.push(showPlayerCharacter(campaignId, id));
+      }
     }
   };
 
@@ -36,6 +43,14 @@ export const EditPlayerCharacter = (): JSX.Element => {
   if (playerCharacter) {
     return (
       <div>
+        <Page.Header>
+          <h1>Editing Character</h1>
+          <Link className="button button--gray" to={showPlayerCharacter(campaignId, id)}>
+            Cancel
+          </Link>
+        </Page.Header>
+        <ErrorNotice error={error} />
+
         <PlayerCharacterForm
           playerCharacter={playerCharacter}
           onChange={(c) => setPlayerCharacter(c as PlayerCharacter)}

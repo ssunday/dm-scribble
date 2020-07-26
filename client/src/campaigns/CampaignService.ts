@@ -23,9 +23,9 @@ export async function createCampaign(
 export async function updateCampaign(
   id: string,
   data: Partial<Campaign>
-): Promise<boolean> {
+): Promise<Http.UpdatedResult> {
   const response = await Http.put(`/api/campaigns/${id}`, {
     campaign: data,
   });
-  return response.status === Http.HttpCode.NoContent;
+  return response.data;
 }

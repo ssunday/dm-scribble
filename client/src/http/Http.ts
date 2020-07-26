@@ -16,6 +16,10 @@ export type CreatedResult = {
   error?: string;
 };
 
+export type UpdatedResult = undefined | {
+  error?: string;
+};
+
 export async function get(
   path: string,
   data?: Record<string, unknown>

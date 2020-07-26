@@ -4,6 +4,7 @@ import { PlayerCharacter } from './PlayerCharacter';
 import { getPlayerCharacter } from './PlayerCharacterService';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { editPlayerCharacter } from './PlayerCharacterPaths';
+import * as Page from '../components/Page';
 
 export const ShowPlayerCharacter = (): JSX.Element => {
   const { campaignId, id } = useParams();
@@ -24,11 +25,15 @@ export const ShowPlayerCharacter = (): JSX.Element => {
   if (playerCharacter) {
     return (
       <div>
-        <h1>{playerCharacter.name}</h1>
-        <h2>Race: {playerCharacter.race}</h2>
-        <Link to={editPlayerCharacter(campaignId, playerCharacter.id)}>
-          Edit
-        </Link>
+        <Page.Header>
+          <h1>{playerCharacter.name}</h1>
+          <Link className="button" to={editPlayerCharacter(campaignId, playerCharacter.id)}>
+            Edit
+          </Link>
+        </Page.Header>
+        <div>
+          <p>Race: {playerCharacter.race}</p>
+        </div>
       </div>
     );
   }

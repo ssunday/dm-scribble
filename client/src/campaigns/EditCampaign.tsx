@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-
 import { Campaign } from './Campaign';
 import { getCampaign, updateCampaign } from './CampaignService';
 import { CampaignForm } from './shared/CampaignForm';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import * as Page from '../components/Page';
 import { showCampaign } from './CampaignPaths';
+import { ErrorNotice } from '../form/ErrorNotice';
 
 export const EditCampaign = (): JSX.Element => {
   const { id } = useParams();
@@ -15,7 +15,7 @@ export const EditCampaign = (): JSX.Element => {
   const [campaign, setCampaign] = React.useState<Campaign | undefined>(
     undefined
   );
-  const [error, setError] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<string | undefined>();
 
   const fetchCampaign = async (): Promise<void> => {
     const result = await getCampaign(id);
@@ -24,11 +24,11 @@ export const EditCampaign = (): JSX.Element => {
 
   const saveCampaign = async (): Promise<void> => {
     if (id && campaign) {
-      try {
-        await updateCampaign(id, campaign);
+      const result = await updateCampaign(id, campaign);
+      if (result) {
+        setError(result.error || 'Something went wrong');
+      } else {
         history.push(showCampaign(id));
-      } catch (error) {
-        setError(true);
       }
     }
   };
@@ -46,7 +46,7 @@ export const EditCampaign = (): JSX.Element => {
             Cancel
           </Link>
         </Page.Header>
-        {error && <p>Something went wrong</p>}
+        <ErrorNotice error={error} />
         <CampaignForm
           campaign={campaign}
           onChange={(c) => setCampaign(c as Campaign)}

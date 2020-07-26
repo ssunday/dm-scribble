@@ -46,12 +46,12 @@ export async function updatePlayerCharacter(
   campaignId: string,
   id: string,
   data: Partial<PlayerCharacter>
-): Promise<boolean> {
+): Promise<Http.UpdatedResult> {
   const response = await Http.put(
     `/api/campaigns/${campaignId}/player_characters/${id}`,
     {
       playerCharacter: data,
     }
   );
-  return response.status === Http.HttpCode.NoContent;
+  return response.data;
 }
