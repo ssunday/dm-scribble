@@ -13,7 +13,7 @@ class PlayerCharactersController < ApplicationController
   def create
     player_character = PlayerCharacter.create!(player_character_params)
 
-    render status: :created, json: { action: 'create', playerCharacter: player_character }
+    render status: :created, json: { action: 'create', id: player_character.id }
   end
 
   def update

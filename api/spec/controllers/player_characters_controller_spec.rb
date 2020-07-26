@@ -67,7 +67,7 @@ describe PlayerCharactersController, type: :controller do
 
       expect(response.status).to eq(201)
       expect(data['action']).to eq('create')
-      expect(data['playerCharacter']).to include('name' => 'Test')
+      expect(data['id']).to_not be_nil
       expect(player_character.campaign_ids.to_a).to eq([campaign.id])
     end
 

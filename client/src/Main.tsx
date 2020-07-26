@@ -11,14 +11,14 @@ import './assets/stylesheets/main.scss';
 export const Main = (): JSX.Element => {
   return (
     <Router history={createBrowserHistory()}>
-      <Switch>
-        <Layout>
+      <Layout>
+        <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/not-found" component={NotFound} />
           <Route path="/campaigns" component={CampaignRoutes} />
-          <Route exact path="/*" component={NotFound} />
-        </Layout>
-      </Switch>
+          <Route path="/*" component={NotFound} />
+        </Switch>
+      </Layout>
     </Router>
   );
 };

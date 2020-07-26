@@ -13,7 +13,7 @@ class CampaignsController < ApplicationController
   def create
     campaign = Campaign.create!(campaign_params)
 
-    render status: :created, json: { action: 'create', campaign: campaign }
+    render status: :created, json: { action: 'create', id: campaign.id }
   end
 
   def update

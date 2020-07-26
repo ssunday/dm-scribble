@@ -46,7 +46,7 @@ describe CampaignsController, type: :controller do
 
       expect(response.status).to eq(201)
       expect(data['action']).to eq('create')
-      expect(data['campaign']).to include('name' => 'Test')
+      expect(data['id']).to_not be_nil
     end
 
     it 'handles bad data' do

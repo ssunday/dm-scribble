@@ -4,6 +4,7 @@ import { PlayerCharacter } from './PlayerCharacter';
 import { createPlayerCharacter } from './PlayerCharacterService';
 import { showCampaign } from '../campaigns/CampaignPaths';
 import { PlayerCharacterForm } from './shared/PlayerCharacterForm';
+import { ErrorNotice } from '../form/ErrorNotice';
 
 export const NewPlayerCharacter = (): JSX.Element => {
   const { campaignId } = useParams();
@@ -15,14 +16,14 @@ export const NewPlayerCharacter = (): JSX.Element => {
     name: '',
   });
 
-  const [error, setError] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<string | undefined>(undefined);
 
   const savePlayerCharacter = async (): Promise<void> => {
     const result = await createPlayerCharacter(campaignId, playerCharacter);
-    if (result) {
+    if (result.id) {
       history.push(showCampaign(campaignId));
     } else {
-      setError(result);
+      setError(result.error || 'Something went wrong');
     }
   };
 
@@ -30,7 +31,7 @@ export const NewPlayerCharacter = (): JSX.Element => {
     <div>
       <h1>New Player Character</h1>
 
-      {error && <p>Something went wrong</p>}
+      <ErrorNotice error={error} />
 
       <PlayerCharacterForm
         playerCharacter={playerCharacter}

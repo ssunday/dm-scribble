@@ -5,6 +5,7 @@ import { PlayerCharacter } from './PlayerCharacter';
 import { getPlayerCharacters } from './PlayerCharacterService';
 import { newPlayerCharacter } from './PlayerCharacterPaths';
 import { LoadingSpinner } from '../components/LoadingSpinner';
+import * as Page from '../components/Page';
 
 export const IndexPlayerCharacter = ({
   campaignId,
@@ -32,8 +33,12 @@ export const IndexPlayerCharacter = ({
 
   return (
     <div>
-      <h1>Player Characters</h1>
-      <Link to={newPlayerCharacter(campaignId)}>New Player Character</Link>
+      <Page.Header>
+        <h2>Player Characters</h2>
+        <Link className="button" to={newPlayerCharacter(campaignId)}>
+          New Player Character
+        </Link>
+      </Page.Header>
       <div className="card__grid">
         {playerCharacters.map((playerCharacter) => (
           <PlayerCharacterCard

@@ -4,6 +4,7 @@ import { Campaign } from './Campaign';
 import { createCampaign } from './CampaignService';
 import { indexCampaign } from './CampaignPaths';
 import { CampaignForm } from './shared/CampaignForm';
+import { ErrorNotice } from '../form/ErrorNotice';
 
 export const NewCampaign = (): JSX.Element => {
   const history = useHistory();
@@ -11,14 +12,14 @@ export const NewCampaign = (): JSX.Element => {
     name: '',
   });
 
-  const [error, setError] = React.useState<boolean>(false);
+  const [error, setError] = React.useState<string | undefined>(undefined);
 
   const saveCampaign = async (): Promise<void> => {
     const result = await createCampaign(campaign);
-    if (result) {
+    if (result.id) {
       history.push(indexCampaign());
     } else {
-      setError(result);
+      setError(result.error || 'Something went wrong');
     }
   };
 
@@ -26,7 +27,7 @@ export const NewCampaign = (): JSX.Element => {
     <div>
       <h1>New Campaign</h1>
 
-      {error && <p>Something went wrong</p>}
+      <ErrorNotice error={error} />
 
       <CampaignForm
         campaign={campaign}

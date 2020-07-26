@@ -8,4 +8,20 @@
   &:hover {
     background-color: lighten($color-dark-green, 10%);
   }
+
+  &--gray {
+    background-color: $color-gray;
+    border: none;
+    border-radius: 3px;
+    color: $color-white;
+    padding: 1em 1.5em;
+
+    &:hover {
+      background-color: lighten($color-gray, 10%);
+    }
+  }
+}
+
+a.button {
+  text-decoration: none;
 }

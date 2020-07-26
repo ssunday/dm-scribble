@@ -24,15 +24,8 @@ export const EditPlayerCharacter = (): JSX.Element => {
 
   const savePlayerCharacter = async (): Promise<void> => {
     if (id && playerCharacter) {
-      const result = await updatePlayerCharacter(
-        campaignId,
-        id,
-        playerCharacter
-      );
-
-      if (result) {
-        history.push(showPlayerCharacter(campaignId, id));
-      }
+      await updatePlayerCharacter(campaignId, id, playerCharacter);
+      history.push(showPlayerCharacter(campaignId, id));
     }
   };
 

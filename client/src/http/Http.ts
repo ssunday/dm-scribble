@@ -11,6 +11,11 @@ export type HttpResult = {
   data: Record<string, unknown>;
 };
 
+export type CreatedResult = {
+  id?: string;
+  error?: string;
+};
+
 export async function get(
   path: string,
   data?: Record<string, unknown>
@@ -22,12 +27,20 @@ export async function post(
   path: string,
   data?: Record<string, unknown>
 ): Promise<HttpResult> {
-  return await axios.post(path, data);
+  return await axios.post(path, data, {
+    validateStatus: (status: number): boolean => {
+      return status < 500;
+    },
+  });
 }
 
 export async function put(
   path: string,
   data?: Record<string, unknown>
 ): Promise<HttpResult> {
-  return await axios.put(path, data);
+  return await axios.put(path, data, {
+    validateStatus: (status: number): boolean => {
+      return status < 500;
+    },
+  });
 }

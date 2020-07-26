@@ -1,37 +1,35 @@
-import axios from 'axios';
 import * as PlayerCharacterService from '../../src/playerCharacters/PlayerCharacterService';
+import * as Http from '../../src/http/Http';
 
-jest.mock('axios');
+jest.mock('../../src/http/Http');
 
 describe('PlayerCharacterService', (): void => {
   describe('getPlayerCharacters', (): void => {
     it('calls to api/campaigns/:campaignId/player_characters route', async (): Promise<
       void
     > => {
-      (axios.get as any).mockImplementation(() => {
+      (Http.get as any).mockImplementation(() => {
         return { data: { playerCharacters: [] } };
       });
 
       await PlayerCharacterService.getPlayerCharacters('2');
 
-      expect(axios.get).toHaveBeenCalledWith(
-        '/api/campaigns/2/player_characters',
-        undefined
+      expect(Http.get).toHaveBeenCalledWith(
+        '/api/campaigns/2/player_characters'
       );
     });
   });
 
   describe('getPlayerCharacter', (): void => {
     it('calls to api/playerCharacter route', async (): Promise<void> => {
-      (axios.get as any).mockImplementation(() => {
+      (Http.get as any).mockImplementation(() => {
         return { data: { playerCharacter: undefined } };
       });
 
       await PlayerCharacterService.getPlayerCharacter('2', '4');
 
-      expect(axios.get).toHaveBeenCalledWith(
-        '/api/campaigns/2/player_characters/4',
-        undefined
+      expect(Http.get).toHaveBeenCalledWith(
+        '/api/campaigns/2/player_characters/4'
       );
     });
   });
@@ -40,18 +38,31 @@ describe('PlayerCharacterService', (): void => {
     const data = { name: '4' };
 
     it('calls to api/playerCharacter route', async (): Promise<void> => {
-      (axios.post as any).mockImplementation(() => {
+      (Http.post as any).mockImplementation(() => {
         return { status: 201 };
       });
 
       await PlayerCharacterService.createPlayerCharacter('2', data);
 
-      expect(axios.post).toHaveBeenCalledWith(
+      expect(Http.post).toHaveBeenCalledWith(
         '/api/campaigns/2/player_characters',
         {
           playerCharacter: data,
         }
       );
+    });
+
+    it('returns id', async (): Promise<void> => {
+      (Http.post as any).mockImplementation(() => {
+        return { status: 201, data: { id: 'foobar' } };
+      });
+
+      const result = await PlayerCharacterService.createPlayerCharacter(
+        '2',
+        data
+      );
+
+      expect(result.id).toBe('foobar');
     });
   });
 
@@ -61,13 +72,13 @@ describe('PlayerCharacterService', (): void => {
     it('calls to api/playerCharacter route with put', async (): Promise<
       void
     > => {
-      (axios.put as any).mockImplementation(() => {
+      (Http.put as any).mockImplementation(() => {
         return { status: 204 };
       });
 
       await PlayerCharacterService.updatePlayerCharacter('10', '5', data);
 
-      expect(axios.put).toHaveBeenCalledWith(
+      expect(Http.put).toHaveBeenCalledWith(
         '/api/campaigns/10/player_characters/5',
         {
           playerCharacter: data,

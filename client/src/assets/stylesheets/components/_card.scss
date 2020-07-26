@@ -1,10 +1,8 @@
 .card__grid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  @include flex-row-wrap;
 
   .card {
-    flex: 20%;
+    flex: 40%;
   }
 }
 

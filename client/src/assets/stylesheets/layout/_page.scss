@@ -1,0 +1,8 @@
+.page__header {
+  @include flex-row-wrap;
+  justify-content: space-between;
+
+  a {
+    height: 100%;
+  }
+}

@@ -32,14 +32,14 @@ export async function getPlayerCharacter(
 export async function createPlayerCharacter(
   campaignId: string,
   data: Partial<PlayerCharacter>
-): Promise<boolean> {
+): Promise<Http.CreatedResult> {
   const response = await Http.post(
     `/api/campaigns/${campaignId}/player_characters`,
     {
       playerCharacter: data,
     }
   );
-  return response.status === Http.HttpCode.Created;
+  return response.data;
 }
 
 export async function updatePlayerCharacter(
