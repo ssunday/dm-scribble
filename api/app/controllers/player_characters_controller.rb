@@ -7,7 +7,7 @@ class PlayerCharactersController < ApplicationController
   end
 
   def show
-    render json: { action: 'show', playerCharacter: find_player_character }
+    render json: { action: 'show', playerCharacter: transform_record(find_player_character) }
   end
 
   def create
@@ -29,6 +29,8 @@ class PlayerCharactersController < ApplicationController
   end
 
   def player_character_params
-    params.require(:playerCharacter).permit(:name, :race).merge(campaign_ids: [params[:campaign_id]])
+    parse_params(:playerCharacter)
+      .permit(:name, :race, :classes, :description, :sheet_url)
+      .merge(campaign_ids: [params[:campaign_id]])
   end
 end

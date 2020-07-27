@@ -1,11 +1,27 @@
 describe PlayerCharacter, type: :model do
   describe 'validations' do
-    it 'is not valid if no name' do
-      expect(PlayerCharacter.new.valid?).to eq(false)
+    describe 'name' do
+      it 'is not valid if no name' do
+        expect(PlayerCharacter.new.valid?).to eq(false)
+      end
+
+      it 'is valid if name' do
+        expect(PlayerCharacter.new(name: 'foobar').valid?).to eq(true)
+      end
     end
 
-    it 'is valid if name' do
-      expect(PlayerCharacter.new(name: 'foobar').valid?).to eq(true)
+    describe 'sheet url' do
+      it 'is not valid if bad url' do
+        expect(PlayerCharacter.new(name: 'foobar', sheet_url: 'alert(\'foobar\')').valid?).to eq(false)
+      end
+
+      it 'is valid if OK url' do
+        expect(PlayerCharacter.new(name: 'foobar', sheet_url: 'http://www.example.com').valid?).to eq(true)
+      end
+
+      it 'is valid if blank' do
+        expect(PlayerCharacter.new(name: 'foobar', sheet_url: '').valid?).to eq(true)
+      end
     end
   end
 end

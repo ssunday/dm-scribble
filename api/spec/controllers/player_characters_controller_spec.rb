@@ -18,16 +18,20 @@ describe PlayerCharactersController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:player_character) { PlayerCharacter.create(name: 'foobar') }
+    let(:player_character) { PlayerCharacter.create(name: 'foobar', sheet_url: 'https://example.com') }
 
-    it 'returns a success response' do
+    it 'returns player character data' do
       get '/campaigns/:campaign_id/player_characters/:id', id: player_character.id, campaign_id: campaign.id
 
       data = JSON.parse(response.body)
 
       expect(response.status).to eq(200)
       expect(data['action']).to eq('show')
-      expect(data['playerCharacter']).to include('id' => player_character.id, 'name' => 'foobar')
+      expect(data['playerCharacter']).to include(
+        'id' => player_character.id,
+        'name' => 'foobar',
+        'sheetUrl' => 'https://example.com'
+      )
     end
   end
 

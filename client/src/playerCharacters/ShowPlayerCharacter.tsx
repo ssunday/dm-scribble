@@ -27,6 +27,13 @@ export const ShowPlayerCharacter = (): JSX.Element => {
       <div>
         <Page.Header>
           <h1>{playerCharacter.name}</h1>
+          <span />
+          {(playerCharacter.sheetUrl !== undefined &&
+            playerCharacter.sheetUrl !== null && (
+              <a className="button" href={playerCharacter.sheetUrl}>
+                Character Sheet
+              </a>
+            )) || <span />}
           <Link
             className="button"
             to={editPlayerCharacter(campaignId, playerCharacter.id)}
@@ -36,6 +43,8 @@ export const ShowPlayerCharacter = (): JSX.Element => {
         </Page.Header>
         <div>
           <p>Race: {playerCharacter.race}</p>
+          <p>Classes: {playerCharacter.classes}</p>
+          <p>{playerCharacter.description}</p>
         </div>
       </div>
     );
