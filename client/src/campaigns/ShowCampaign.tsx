@@ -32,6 +32,7 @@ export const ShowCampaign = (): JSX.Element => {
             Edit
           </Link>
         </Page.Header>
+        <p>{campaign.description}</p>
         <IndexPlayerCharacter campaignId={campaign.id} />
       </div>
     );

@@ -27,7 +27,11 @@ export const EditPlayerCharacter = (): JSX.Element => {
 
   const savePlayerCharacter = async (): Promise<void> => {
     if (id && playerCharacter) {
-      const result = await updatePlayerCharacter(campaignId, id, playerCharacter);
+      const result = await updatePlayerCharacter(
+        campaignId,
+        id,
+        playerCharacter
+      );
       if (result) {
         setError(result.error || 'Something went wrong');
       } else {
@@ -45,7 +49,10 @@ export const EditPlayerCharacter = (): JSX.Element => {
       <div>
         <Page.Header>
           <h1>Editing Character</h1>
-          <Link className="button button--gray" to={showPlayerCharacter(campaignId, id)}>
+          <Link
+            className="button button--gray"
+            to={showPlayerCharacter(campaignId, id)}
+          >
             Cancel
           </Link>
         </Page.Header>

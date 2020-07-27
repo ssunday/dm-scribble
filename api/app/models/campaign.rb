@@ -7,6 +7,7 @@ class Campaign
   has_many :player_characters
 
   field :name
+  field :description
 
   validates_presence_of :name
 end

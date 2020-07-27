@@ -27,7 +27,10 @@ export const ShowPlayerCharacter = (): JSX.Element => {
       <div>
         <Page.Header>
           <h1>{playerCharacter.name}</h1>
-          <Link className="button" to={editPlayerCharacter(campaignId, playerCharacter.id)}>
+          <Link
+            className="button"
+            to={editPlayerCharacter(campaignId, playerCharacter.id)}
+          >
             Edit
           </Link>
         </Page.Header>

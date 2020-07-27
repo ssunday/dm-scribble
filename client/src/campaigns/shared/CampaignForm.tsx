@@ -1,6 +1,6 @@
 import React from 'react';
 import { Campaign } from '../Campaign';
-import { TextInput } from '../../form/TextInput';
+import * as Inputs from '../../form/Inputs';
 import { Form } from '../../form/Form';
 
 export const CampaignForm = ({
@@ -18,11 +18,18 @@ export const CampaignForm = ({
 
   return (
     <Form onSubmit={onSave}>
-      <TextInput
+      <Inputs.Text
         label="Name"
         prefix="campaign"
         name="name"
         value={campaign.name || ''}
+        onChange={handleChange}
+      />
+      <Inputs.TextArea
+        label="Description"
+        prefix="campaign"
+        name="description"
+        value={campaign.description || ''}
         onChange={handleChange}
       />
     </Form>

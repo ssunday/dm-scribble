@@ -10,7 +10,10 @@ export const CampaignCard = ({
 }): JSX.Element => {
   return (
     <div className="card">
-      <h3 className="card__title"><Link to={showCampaign(campaign.id)}>{campaign.name}</Link></h3>
+      <h3 className="card__title">
+        <Link to={showCampaign(campaign.id)}>{campaign.name}</Link>
+      </h3>
+      <p>{campaign.description}</p>
     </div>
   );
 };
