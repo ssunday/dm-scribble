@@ -1,4 +1,6 @@
-# DND Scrawl Client
+# Client
+
+React + TypeScript
 
 ## Requirements
 

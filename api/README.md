@@ -1,4 +1,4 @@
-# DND Scrawl API
+# API
 
 Built using Ruby on Jets
 

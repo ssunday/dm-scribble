@@ -1,4 +1,4 @@
-# DND Scrawl
+# DM Scribble
 
 WIP app to hold DND notes per campaign.
 
