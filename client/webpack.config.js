@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.ts',
@@ -17,7 +18,7 @@ module.exports = {
     }
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: ['.ts', '.tsx', '.mjs', '.js', '.jsx']
   },
   mode: 'production',
   module: {
@@ -47,6 +48,7 @@ module.exports = {
       title: 'DND Scrawl',
       hash: true,
       template: './index.html'
-    })
+    }),
+    new Dotenv()
   ]
 };

@@ -2,12 +2,16 @@
 
 React + TypeScript
 
+Auth via AWS Amplify/Cognito since I wasn't didn't care about the stock UI of it.
+
 ## Requirements
 
 - Node 14.5.0
+- Cognito dev environment setup and creds put into `.env`
 
 ## Setup
 
+- `cp .example.env .env`
 - `npm install`
 - `npm install start`
 

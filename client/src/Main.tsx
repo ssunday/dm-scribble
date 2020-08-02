@@ -1,14 +1,15 @@
 import React from 'react';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 import { Route, Router, Switch } from 'react-router';
 import { createBrowserHistory } from 'history';
 import { CampaignRoutes } from './campaigns/CampaignRoutes';
 import { Home } from './app/Home';
 import { NotFound } from './app/NotFound';
-import { Layout } from './app/Layout';
+import Layout from './app/Layout';
 
 import './assets/stylesheets/main.scss';
 
-export const Main = (): JSX.Element => {
+const Main = (): JSX.Element => {
   return (
     <Router history={createBrowserHistory()}>
       <Layout>
@@ -22,3 +23,5 @@ export const Main = (): JSX.Element => {
     </Router>
   );
 };
+
+export default withAuthenticator(Main);
