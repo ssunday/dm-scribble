@@ -2,7 +2,7 @@
 
 React + TypeScript
 
-Auth via AWS Amplify/Cognito since I wasn't didn't care about the stock UI of it.
+Auth via AWS Amplify/Cognito since I didn't care about the stock UI of it. Yet, anyway.
 
 ## Requirements
 

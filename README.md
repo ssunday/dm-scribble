@@ -6,6 +6,7 @@ WIP app to hold DND notes per campaign.
 
 - Backend: Ruby on Jets with DynamoDB
 - Frontend: React/TypeScript
+- Auth: Cognito via AWS Amplify
 
 ## TODO
 
