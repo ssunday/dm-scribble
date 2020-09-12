@@ -9,7 +9,7 @@ import Layout from './app/Layout';
 
 import './assets/stylesheets/main.scss';
 
-const Main = (): JSX.Element => {
+export const Main = (): JSX.Element => {
   return (
     <Router history={createBrowserHistory()}>
       <Layout>
