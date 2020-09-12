@@ -7,7 +7,7 @@ Auth via AWS Amplify/Cognito since I didn't care about the stock UI of it. Yet, 
 ## Requirements
 
 - Node 14.5.0
-- Cognito dev environment setup and creds put into `.env`
+- Cognito dev environment setup and creds put into `.env`, or skipping all authentication via `SKIP_COGNITO=true`
 
 ## Setup
 

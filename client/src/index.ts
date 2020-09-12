@@ -1,6 +1,6 @@
 import { createElement } from 'react';
 import { render } from 'react-dom';
-import Main from './Main';
+import AuthenticatedMain, { Main } from './Main';
 import Amplify from 'aws-amplify';
 
 Amplify.configure({
@@ -11,4 +11,6 @@ Amplify.configure({
   },
 });
 
-render(createElement(Main), document.getElementById('app-root'));
+const main = process.env.SKIP_COGNITO === 'true' ? Main : AuthenticatedMain;
+
+render(createElement(main), document.getElementById('app-root'));
