@@ -1,0 +1,34 @@
+version: 2.1
+
+jobs:
+  client_lint_test:
+    working_directory: ~/project/client
+    docker:
+      - image: circleci/node:14
+    steps:
+      - checkout:
+          path: ~/project
+      - run: npm install
+      - run: npm run lint
+      - run: npm run test
+
+  api_lint_test:
+    working_directory: ~/project/api
+    docker:
+      - image: circleci/ruby:2.6.5
+      - image: circleci/dynamodb:latest
+    steps:
+      - checkout:
+          path: ~/project
+      - run: gem install bundler
+      - run: bundle install
+      - run: cp .example.env.test .env.test
+      - run: bundle exec rubocop -c .rubocop.yml
+      - run: JETS_ENV=test bundle exec rake dynamoid:create_tables
+      - run: bundle exec rspec
+
+workflows:
+  lint_and_test:
+    jobs:
+      - api_lint_test
+      - client_lint_test
