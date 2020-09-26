@@ -17,6 +17,9 @@ export const PlayerCharacterCard = ({
           {playerCharacter.name}
         </Link>
       </h3>
+      {(playerCharacter.imageUrl && (
+        <img src={playerCharacter.imageUrl} alt={playerCharacter.name} />
+      )) || <div />}
       <h4 className="card__subtitle">Race: {playerCharacter.race}</h4>
       <h4 className="card__subtitle">Classes: {playerCharacter.classes}</h4>
       <p>{playerCharacter.description}</p>

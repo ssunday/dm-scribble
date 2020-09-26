@@ -2,7 +2,7 @@ class PlayerCharactersController < ApplicationController
   def index
     render json: {
       action: 'index',
-      playerCharacters: PlayerCharacter.where('campaign_ids.contains' => params[:campaign_id]).all
+      playerCharacters: transform_records(find_player_characters)
     }
   end
 
@@ -28,9 +28,15 @@ class PlayerCharactersController < ApplicationController
     PlayerCharacter.find(params[:id])
   end
 
+  def find_player_characters
+    PlayerCharacter
+      .where('campaign_ids.contains' => params[:campaign_id])
+      .all
+  end
+
   def player_character_params
     parse_params(:playerCharacter)
-      .permit(:name, :race, :classes, :description, :sheet_url)
+      .permit(:name, :race, :classes, :description, :sheet_url, :image_url)
       .merge(campaign_ids: [params[:campaign_id]])
   end
 end

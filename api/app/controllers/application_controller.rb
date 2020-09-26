@@ -14,4 +14,8 @@ class ApplicationController < Jets::Controller::Base
   def transform_record(record)
     record.as_json.transform_keys { |k| k.camelize(:lower) }
   end
+
+  def transform_records(records)
+    records.map { |record| transform_record(record) }
+  end
 end

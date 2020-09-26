@@ -1,5 +1,5 @@
 import React from 'react';
-import { PlayerCharacter } from '../PlayerCharacter';
+import { PlayerCharacterPayload } from '../PlayerCharacter';
 import * as Inputs from '../../form/Inputs';
 import { Form } from '../../form/Form';
 
@@ -8,10 +8,8 @@ export const PlayerCharacterForm = ({
   onChange,
   onSave,
 }: {
-  playerCharacter: PlayerCharacter | Partial<PlayerCharacter>;
-  onChange: (
-    playerCharacter: PlayerCharacter | Partial<PlayerCharacter>
-  ) => void;
+  playerCharacter: PlayerCharacterPayload;
+  onChange: (playerCharacter: PlayerCharacterPayload) => void;
   onSave: () => Promise<void>;
 }): JSX.Element => {
   const handleChange = (name: string, value: string | undefined): void => {
@@ -42,10 +40,17 @@ export const PlayerCharacterForm = ({
         onChange={handleChange}
       />
       <Inputs.Text
-        label="SheetUrl"
+        label="Character Sheet Url"
         prefix="playerCharacter"
         name="sheetUrl"
         value={playerCharacter.sheetUrl || ''}
+        onChange={handleChange}
+      />
+      <Inputs.Text
+        label="Image Url"
+        prefix="playerCharacter"
+        name="imageUrl"
+        value={playerCharacter.imageUrl || ''}
         onChange={handleChange}
       />
       <Inputs.TextArea
