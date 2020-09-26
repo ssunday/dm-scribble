@@ -15,6 +15,25 @@ describe PlayerCharactersController, type: :controller do
       expect(data['action']).to eq('index')
       expect(data['playerCharacters'].count).to eq(2)
     end
+
+    it 'camelcases pcs' do
+      player_character = PlayerCharacter.create(
+        name: 'foobar',
+        campaign_ids: [campaign.id],
+        sheet_url: 'https://example.com'
+      )
+
+      get '/campaigns/:campaign_id/player_characters', campaign_id: campaign.id
+
+      data = JSON.parse(response.body)
+
+      expect(response.status).to eq(200)
+      expect(data['playerCharacters'].first).to include(
+        'id' => player_character.id,
+        'name' => 'foobar',
+        'sheetUrl' => 'https://example.com'
+      )
+    end
   end
 
   describe 'GET #show' do

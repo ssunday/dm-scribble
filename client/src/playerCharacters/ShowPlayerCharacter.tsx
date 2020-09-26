@@ -22,33 +22,35 @@ export const ShowPlayerCharacter = (): JSX.Element => {
     fetchPlayerCharacter();
   }, [campaignId, id]);
 
-  if (playerCharacter) {
-    return (
-      <div>
-        <Page.Header>
-          <h1>{playerCharacter.name}</h1>
-          <span />
-          {(playerCharacter.sheetUrl !== undefined &&
-            playerCharacter.sheetUrl !== null && (
-              <a className="button" href={playerCharacter.sheetUrl}>
-                Character Sheet
-              </a>
-            )) || <span />}
-          <Link
-            className="button"
-            to={editPlayerCharacter(campaignId, playerCharacter.id)}
-          >
-            Edit
-          </Link>
-        </Page.Header>
-        <div>
-          <p>Race: {playerCharacter.race}</p>
-          <p>Classes: {playerCharacter.classes}</p>
-          <p>{playerCharacter.description}</p>
-        </div>
-      </div>
-    );
+  if (!playerCharacter) {
+    return <LoadingSpinner />;
   }
 
-  return <LoadingSpinner />;
+  return (
+    <Page.Wrapper>
+      <Page.Header>
+        <h1>{playerCharacter.name}</h1>
+        <span />
+        {(playerCharacter.sheetUrl && (
+          <a className="button" href={playerCharacter.sheetUrl}>
+            Character Sheet
+          </a>
+        )) || <span />}
+        <Link
+          className="button"
+          to={editPlayerCharacter(campaignId, playerCharacter.id)}
+        >
+          Edit
+        </Link>
+      </Page.Header>
+      {(playerCharacter.imageUrl && (
+        <img src={playerCharacter.imageUrl} alt={playerCharacter.name} />
+      )) || <div />}
+      <div>
+        <p>Race: {playerCharacter.race}</p>
+        <p>Classes: {playerCharacter.classes}</p>
+        <p>{playerCharacter.description}</p>
+      </div>
+    </Page.Wrapper>
+  );
 };

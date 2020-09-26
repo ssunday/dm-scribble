@@ -10,4 +10,10 @@
   border: 4px solid $color-red;
   padding: 1em;
   margin: 0.5em;
+
+  img {
+    max-height: 15em;
+    max-width: 100%;
+    width: auto;
+  }
 }
